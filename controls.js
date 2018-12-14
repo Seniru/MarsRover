@@ -1,3 +1,4 @@
+
 var x,y;
 var axis = 0;
 var logData = "";
