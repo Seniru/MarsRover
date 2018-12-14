@@ -1,0 +1,289 @@
+body {
+  margin: 0;
+  background-image: url("https://www.dlr.de/dlr/en/Portaldata/1/Resources/bilder/missionen/mars_2013/16_9/scaled/Atlantis_mosaic_co_xl.jpg");
+  font-family: 'Lato', sans-serif !important;
+}
+#ctrl-panel {
+  position:fixed;
+  bottom: 3px;
+  width: 100%;
+  height: 25% !important;
+}
+
+#console {
+  padding: 15px;
+  height: 100% !important;
+  width: 100%;
+  position: relative;
+  background-color: black;
+  color: green;
+  overflow: scroll;
+  bottom:-5px;
+  z-index: 500;
+  font-family: 'Inconsolata', 'lucida-console';
+  bottom: 10px;
+
+}
+.cmd > input {
+  width: 75%;
+  color: green;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin: 0;
+}
+
+input:focus {
+  outline: 0;
+}
+.cmd > button {
+  background-color: transparent;
+  border: 1px solid green;
+  outline: none;
+  color: green;
+}
+#container {
+  position: fixed;
+  top: 20%;
+  height: 50%;
+  width: 40%;
+  left: -35%;
+  background-color: red;
+  transition-duration: 1s;
+  border-radius: 5%;
+  border: 3px solid #454545;
+}
+#container:hover {
+  left: -3%;
+}
+
+.box {
+  position: relative;
+  height: 18%;
+  width: 82%;
+  left: 3%;
+  margin: 4px;
+  background-color: #880707;
+  border-radius: 0% 30% 30% 0;
+  border: 2px solid black;
+  color: #cdcdcd;
+  font-weight: bold;
+  text-align: center;
+
+}
+.rock-info {
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  background-color: #ad793b;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 20%;
+  display: inline-block;
+  font-size: 9px;
+  padding: 3px;
+}
+.rmv-ico {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    background-color: #ff0000;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 20%;
+    font-size: 9px;
+    padding: 3px !important;
+    font-size: 14px !important;
+}
+#roll {
+  width: 50%;
+  height: 50%;
+  border: 3px solid black;
+}
+
+#gallery {
+  position: fixed;
+ top: 10%;
+  height: 70%;
+  width: 80%;
+  right: 10%;
+  background-color: red;
+  transition-duration: 1s;
+  border-radius: 5px;
+  border: 3px solid #454545;
+  overflow-y:scroll;
+  padding: 3px;
+  /*display: none;*/
+
+}
+
+.pic {
+  position: relative;
+  width: 95%;
+  left: 2.5%;
+  border: 1px solid black;
+  height: 90%;
+  margin-top: 5px;
+  background-image: url("https://www.dlr.de/dlr/en/Portaldata/1/Resources/bilder/missionen/mars_2013/16_9/scaled/Atlantis_mosaic_co_xl.jpg");
+}
+.pic > img {
+  width: 100%;
+  height: 100%;
+}
+.cam {
+  position: relative;
+  background-color: #4e0b0a;
+  color: #ffffff;
+  padding: 10px !important;
+/*border-radius: 50% !important;*/
+  box-shadow: 1px 2px 15px 1px black;
+  transition-duration: 0.6s;
+  margin: 3px;
+}
+.cam:active {
+  background-color: #130101;
+  color: #efefef;
+  box-shadow: 1px 2px 15px 2px black;
+
+}
+#arrows {
+  width: 35%;
+  position: relative;
+  height: 99%;
+  padding: 5px;
+  top: 30px;
+  margin: 3px;
+}
+#mov-up {
+  position: relative;
+  left: 35px;
+  display: inline-block;
+
+}
+#mov-down {
+  position: relative;
+  display: inline-block;
+
+}
+#trn-lft {
+  position: relative;
+  display: inline-block;
+
+}
+ #trn-right {
+  position: relative;
+  display: inline-block;
+
+}
+#manual > button {
+  position: relative;
+}
+#photo-func {
+  position: fixed;
+  top: 6%;
+  right: 3%;
+}
+.arr {
+  font-size: 30px;
+  color:white;
+  cursor: pointer;
+}
+#general {
+  position: absolute;
+  right: 30px;
+  width: 20%;
+  top: 30%;
+}
+.tools {
+  position: relative;
+  width: 40%;
+  color: white;
+  margin: 2px;
+  font-size: 30px;
+  cursor: pointer;
+}
+#btm-arr {
+  position: relative;
+  border-top: 3px;
+}
+.tab {
+  padding: 3px 10px 3px 10px ;
+    outline: 0;
+    border-radius: 20% 20% 0% 0%;
+    background-color: #f80000;
+    margin: -7px;
+    border: 0.5px solid black;
+    box-shadow: 5px 2px 20px 0px black;
+    text-shadow: 2px 2px 5px black;
+    position:relative;
+    bottom: 12px;
+}
+#manual {
+  background-image: url(https://dumielauxepices.net/sites/default/files/robots-clipart-panel-743368-2581865.jpg);
+    background-size: 100% 100%;
+    height: 100%;
+    top: -9px;
+    position: relative;
+}
+#stats {
+  position: relative;
+  bottom: 90%;
+  left: 30%;
+  background-color: #4c4c4c;
+  width: 40%;
+  height: 62%;
+  font-size: 13px;
+  padding: 4px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 1px black;
+}
+.tab:focus {
+  outline: none;
+}
+.active-tab {
+  z-index: 50;
+  background-color: red;
+  font-weight: bold;
+
+}
+.close-btn {
+    color: #ffffff;
+    left: 94%;
+    position: relative;
+    top: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#no-img {
+  text-align: center;
+    line-height: 50px;
+    color: white;
+    font-weight: bold;
+    border: 2px solid white;
+    padding: 5px;
+    height: 90%;
+    margin: 10px;
+}
+#pull {
+  width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 41%;
+    left: 83%;
+    background-color: inherit;
+    border-radius: 50%;
+    border-right: inherit;
+}
+.fa-chevron-right:before {
+    content: "\f054";
+    color: white;
+    position: relative;
+    left: 60%;
+    top: 35%;
+}
+
+
+@media only screen and (min-width:1200px) {
+  #pull {
+    left: 95%;
+  }
+}
