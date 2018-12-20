@@ -7,13 +7,15 @@ var container = [];
 var sand;
 var sandX = -300;
 const rocks = [
+  ["Mars soil","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/venus-icon.png",["Si","Fe","Mg","K"]],
+  ["Mars soil","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/mars-icon.png",["K","Al","Mg","Si","H20"]],
   ["Meteorites","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/asteroid-icon.png",["C","S","Pt","P","H20","Si"]],
   ["Meteorite","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/asteroid-2-icon.png",["C","SO2","Ag","Si"]],
-  ["Mars soil","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/mars-icon.png",["K","Al","Mg","Si","H20"]],
   ["Meteorite","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/moon-full-almost-icon.png",["Si","Fe","Pb","Sn"]],
-  ["Mars soil","http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/128/venus-icon.png",["Si","Fe","Mg","K"]],
   ["Poop","http://icons.iconarchive.com/icons/google/noto-emoji-smileys/128/10104-pile-of-poo-icon.png",["Au","Ag","Pd","H20","N"]]
 ];
+
+var comets = [];
 
 const photos = [
   "http://icons.iconarchive.com/icons/goodstuff-no-nonsense/free-space/512/saturn-icon.png",
@@ -37,22 +39,39 @@ $(document).ready(()=>{
     let img = document.querySelector("canvas").toDataURL("image/png");
     $("#roll").html("<img style='width:50%;height:50%;border:1px solid green;' src='"+img+"'>");
   });*/
+  setInterval(() => {
+    let r = getRandomInt(2,rocks.length-1);
+    let cid = 0
+    comets.push([rocks[r],r,getRandomInt(0,windowWidth),getRandomInt(0,windowHeight),cid]);
+  },10000)
   $("#gallery").hide();
   $("#cam").click(() => {
     $("#gallery").toggle(500);
   });
   $("#manual-tab").click(()=>{
      $("#console").hide();
+     $("#mapContain").hide();
      $("#console-tab").removeClass("active-tab");
+     $("#map-tab").removeClass("active-tab");
      $("#manual-tab").addClass("active-tab");
      $("#manual").show();
   });
   $("#console-tab").click(()=> {
       $("#manual").hide();
+      $("#mapContain").hide();
       $("#manual-tab").removeClass("active-tab");
       $("#console-tab").addClass("active-tab");
+      $("#map-tab").removeClass("active-tab");
      $("#console").show();
    newCmd();
+  });
+  $("#map-tab").click(() => {
+    $("#console").hide();
+    $("#manual").hide();
+    $("#console-tab").removeClass("active-tab");
+    $("#manual-tab").removeClass("active-tab");
+    $("#map-tab").addClass("active-tab");
+    $("#mapContain").show();
   });
   $("#cam-mode").change(() => {
     $("#take-pic").attr("onclick",$("#cam-mode").val()=="Sky"?"picS()":"pic()");
@@ -60,6 +79,26 @@ $(document).ready(()=>{
   $(".close-btn").click(() => {
     $("#gallery").toggle(200);
   });
+
+  /*let canM = document.querySelector("#map-canvas");
+  let ctx = document.querySelector("#map-canvas").getContext("2d");
+  ctx.fillStyle = "#325702";
+  ctx.arc(235,490,5,0,Math.PI*2);
+  ctx.fill();
+  setInterval(() => {
+    ctx.beginPath();
+    ctx.translate(x,y);
+        ctx.arc(0,0 , 5, 0, 2 * Math.PI);
+        ctx.fillStyle = '#325702';
+        ctx.fill();
+        ctx.fillStyle = "#00000050";
+        ctx.fillRect(0, 0, canM.width, canM.height);
+      //  ctx.clearRect(0,0,can)
+
+  },10);*/
+  //ctx.arc(30,30,20,0,Math.PI*2);
+  //ctx.stroke();
+
   $.notify.addStyle('ok', {
     html: "<span data-notify-text/>",
     classes: {
@@ -127,6 +166,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth,windowHeight-(windowHeight/5));
+  createCanvas($("#mapContain").width(),$("#mapContain").height());
   x = windowWidth/2;
   y = windowHeight/2;
 }
@@ -147,9 +187,13 @@ function draw() {
   background("rgba(255,255,255,0)");
   fill("#000000");
   clear();
+  /*comets.forEach(c=>{
+    ellipse(c[2],c[3],10,10);
+  });*/
   image(sand,sandX,height/2);
   translate(x,y);
   sandX = sandX>width?-500:++sandX;
+
   rotate(radians(axis));
   imageMode(CENTER);
   image(rover,0,0,50,60);
@@ -206,9 +250,27 @@ function trn(dir) {
 }
 
 function rck() {
+  index = -1;
   if(container.length < 5) {
     logData += hour()+":"+minute()+":"+second()+"  <b>RCK</b><br>";
-    index = container.push(rocks[getRandomInt(0,rocks.length-1)]);
+    for (c of comets){
+      if((x>c[2]-10&&x<c[2]+10)||(y>c[3]-10&&y<c[3]+10)) {
+        console.log("on somethinh")
+        index = container.push(rocks[c[1]]);
+        console.log(x+" "+y+" "+c[2]+" "+c[3]);
+        redraw();
+      /*  for(let j=0;j<comets.length;j++) {
+
+      }*/
+      console.log(comets.indexOf(c));
+       console.log(comets.splice(comets.indexOf(c),1));
+        break;
+      }
+    }
+    if(index==-1) {
+      index = container.push(rocks[getRandomInt(0,1)]);
+      console.log("normal");
+    }
     $.notify("RCK+",{
       style: "ok",
       position: "left top",
